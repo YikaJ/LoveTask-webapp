@@ -1,0 +1,91 @@
+<div class="topBar"></div>
+<div class="jumbotron text-right">
+  <h1><span class="text-primary">Love </span><span class="text-danger">Task</span></h1>
+  <p>一起制定爱的任务，完不成就惩罚<span class="text-primary">他</span><span class="text-danger">（她）</span>吧！</p>
+</div>
+<div class="container-fluid taskList" ng-controller="TaskListCtrl">
+  <div class="row">
+    <div class="col-md-6 leftTaskList">
+      <h3 class="text-primary">
+        你的任务
+            <span class="h5 text-muted">
+              【还有
+              <span class="text-primary">{{remaining($stateParams.type)}}</span>
+              个未完成】
+            </span>
+      </h3>
+      <ul class="list-group">
+        <li class="list-group-item list-group-item-info list-group-item-heading">
+          <div class="row">
+            <div class="col-md-2">
+              截止时间
+            </div>
+            <div class="col-md-4 text-center">任务</div>
+            <div class="col-md-4 text-center">惩罚</div>
+            <div class="col-md-2">完成状态</div>
+          </div>
+        </li>
+        <li class="list-group-item" ng-show="!task[$stateParams.type].taskList.length">任务列表为空，快让<span class="text-danger">{{task[$stateParams.type].loverName}}</span>为你添加任务吧！</li>
+        <li class="list-group-item" ng-repeat="task in task[$stateParams.type].taskList">
+          <div class="row">
+            <div class="col-md-2">
+              {{task.limitTime}}
+            </div>
+            <div class="col-md-4 text-center">{{task.content}}</div>
+            <div class="col-md-4 text-center">{{task.punishment}}</div>
+            <div class="col-md-2" ng-switch on="task.status">
+              <button ng-switch-when="0" ng-click="changeStatus(task)" class="btn btn-warning btn-sm">未完成</button>
+              <button ng-switch-when="1" ng-click="changeStatus(task)" class="btn btn-success btn-sm">已完成</button>
+              <button ng-switch-when="2" class="btn btn-danger btn-sm" disabled>已失败</button>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-6 rightTaskList">
+      <h3 class="text-danger">
+        {{task[$stateParams.type].loverName}}的任务
+            <span class="h5 text-muted">【还有
+              <span class="text-danger">{{remaining(task[$stateParams.type].loverType)}}</span>
+              个未完成】</span>
+        <div class="btn-group-xs pull-right">
+          <button class="btn btn-default" ng-click="createTask()">为她增加任务</button>
+          <button class="btn btn-default" ng-click="clearTask($stateParams.type, 1)">清除完成任务</button>
+          <button class="btn btn-default" ng-click="clearTask(task[$stateParams.type].loverType, 2)">清除惩罚任务</button>
+        </div>
+      </h3>
+      <ul class="list-group">
+        <li class="list-group-item list-group-item-danger list-group-item-heading">
+          <div class="row">
+            <div class="col-md-2">
+              截止时间
+            </div>
+            <div class="col-md-4 text-center">任务</div>
+            <div class="col-md-4 text-center">惩罚</div>
+            <div class="col-md-2">完成状态</div>
+          </div>
+        </li>
+        <li class="list-group-item" ng-show="!task[task[$stateParams.type].loverType].taskList.length">任务列表为空，快帮<span class="text-danger">{{task[$stateParams.type].loverName}}</span>添加新的任务吧！</li>
+        <li class="list-group-item" ng-repeat="task in task[task[$stateParams.type].loverType].taskList">
+          <div class="row">
+            <div class="col-md-2">
+              {{task.limitTime}}
+            </div>
+            <div class="col-md-4 text-center">{{task.content}}</div>
+            <div class="col-md-4 text-center">{{task.punishment}}</div>
+            <div class="col-md-2" ng-switch on="task.status">
+              <button disabled ng-switch-when="0" class="btn btn-warning btn-sm">未完成</button>
+              <button disabled ng-switch-when="1" class="btn btn-success btn-sm">已完成</button>
+              <button disabled ng-switch-when="2" class="btn btn-danger btn-sm">已失败</button>
+            </div>
+          </div>
+        </li>
+        <add-task></add-task>
+      </ul>
+    </div>
+  </div>
+</div>
+<hr/>
+<footer class="container-fluid">
+  ©Yika、J&emsp;nono....
+</footer>

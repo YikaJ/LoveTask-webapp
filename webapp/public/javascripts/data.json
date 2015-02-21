@@ -1,0 +1,15 @@
+{
+  "username": "jimklose",
+  "password": "5710569",
+  "task": [{
+    "type": 0,
+    "loverType": 1,
+    "loverName": "奕嘉",
+    "taskList": []
+  }, {
+    "type": 1,
+    "loverType": 0,
+    "loverName": "如意",
+    "taskList": []
+  }]
+}

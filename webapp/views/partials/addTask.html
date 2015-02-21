@@ -1,0 +1,14 @@
+<li class="list-group-item">
+  <form class="row">
+    <div class="col-md-2">
+      <input required type="text" class="form-control" name="limitTime" ng-model="newTask.limitTime"/>
+    </div>
+    <div class="col-md-4 text-center"><input ng-model="newTask.content" required name="content" class="form-control" type="text"/></div>
+    <div class="col-md-4 text-center"><input ng-model="newTask.punishment" required name="punishment" class="form-control" type="text"/></div>
+    <div class="col-md-2 saveTask">
+      <a ng-click="saveTask()" class="btn-primary" href="javascript:">保存</a>
+      <a class="btn-warning" href="javascript:">取消</a>
+    </div>
+  </form>
+</li>
+
