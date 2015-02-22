@@ -70,7 +70,7 @@
         <li class="list-group-item" ng-repeat="task in task[task[$stateParams.type].loverType].taskList">
           <div class="row">
             <div class="col-md-2">
-              {{task.limitTime}}
+              {{task.limitTime | date: 'yyyy-MM-dd'}}
             </div>
             <div class="col-md-4 text-center">{{task.content}}</div>
             <div class="col-md-4 text-center">{{task.punishment}}</div>

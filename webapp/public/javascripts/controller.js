@@ -5,6 +5,13 @@ myModule.controller('TaskListCtrl', ['$scope', '$http', '$state', '$stateParams'
   $http.get('/getTask')
     .success(function(data){
       $scope.task = data;
+      $scope.task.forEach(function(tk){
+        tk.taskList.forEach(function(task){
+          if(new Date(task.limitTime) < new Date()){
+            task.status = 2;
+          }
+        })
+      })
     });
   //剩余未完成的任务
   $scope.remaining = function(taskType) {

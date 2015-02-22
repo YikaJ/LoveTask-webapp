@@ -1,13 +1,13 @@
 <li class="list-group-item">
-  <form class="row">
+  <form class="row" name="addTaskForm" novalidate ng-submit="saveTask()">
     <div class="col-md-2">
       <input required type="text" class="form-control" name="limitTime" ng-model="newTask.limitTime"/>
     </div>
     <div class="col-md-4 text-center"><input ng-model="newTask.content" required name="content" class="form-control" type="text"/></div>
     <div class="col-md-4 text-center"><input ng-model="newTask.punishment" required name="punishment" class="form-control" type="text"/></div>
     <div class="col-md-2 saveTask">
-      <a ng-click="saveTask()" class="btn-primary" href="javascript:">保存</a>
-      <a ng-click="quitAdd()" class="btn-warning" href="javascript:">取消</a>
+      <button type="submit" class="btn-primary">保存</button>
+      <button ng-click="quitAdd()" class="btn-warning">取消</button>
     </div>
   </form>
 </li>

@@ -36,7 +36,6 @@ router.post('/login', function(req, res){
 router.get('/getTask', function(req, res){
     UserModel.findOne({username: req.session.username})
         .exec(function(err, user){
-            console.log(user);
             if(err) return console.log(err);
             if(!user) return console.log('undefined!');
             res.json(user.task);

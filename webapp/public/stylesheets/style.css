@@ -89,11 +89,18 @@ ul.list-group{
   border-right: 1px solid #EFEFEF;
 }
 
+input.ng-invalid {
+
+  border: 1px solid red;
+
+}
+
 .saveTask{
   margin-left: -8px;
 }
 
-.saveTask a{
+.saveTask button{
+  border: 0;
   float: left;
   padding: 5px;
   color: #EEE;
