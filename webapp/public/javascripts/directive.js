@@ -25,18 +25,21 @@ directiveModule.directive('loginForm', function($http, PostTask){
   }
 });
 
+//增加任务
 directiveModule.directive('addTask', function(){
   return {
     restrict: 'EA',
     replace: true,
     templateUrl: './addTask.html',
     controller: function($scope, $state, $stateParams, PostTask){
-      $scope.newTask = {};
+      $scope.newTask = {status: 0};
       $scope.saveTask = function(){
-        $scope.newTask.status = 0;
-        $scope.task[$scope.task[$stateParams.type].loverType].taskList.push($scope.newTask);
+        //防止引用类型导致无法连续新增
+        var newTask = angular.copy($scope.newTask);
+        $scope.newTask = {status: 0};
+        $scope.task[$scope.task[$stateParams.type].loverType].taskList.unshift(newTask);
 
-        PostTask.saveTask('/addTask', $scope.task)
+        PostTask.saveTask('/saveTask', $scope.task)
           .success(function(data){
             console.log(data.message);
           })

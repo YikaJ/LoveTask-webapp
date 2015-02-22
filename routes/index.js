@@ -4,11 +4,8 @@ var router = express.Router();
 //数据库连接
 var UserModel = require('../models/UserModel');
 
-var moment = require('moment');
-
 router.get('/', function(req, res) {
     // locals需要在render前面，方可生效。
-	
     if(req.session.username){
   	  res.locals.isLogin = true;
     }else{
@@ -35,6 +32,7 @@ router.post('/login', function(req, res){
         })
 });
 
+//获取任务接口
 router.get('/getTask', function(req, res){
     UserModel.findOne({username: req.session.username})
         .exec(function(err, user){
@@ -45,11 +43,8 @@ router.get('/getTask', function(req, res){
         })
 });
 
-router.post('/addTask', function(req, res){
-    UserModel.updateTask(req, res, req.body.task);
-});
-
-router.post('/changeStatus', function(req, res){
+//统一更改任务后的接口
+router.post('/saveTask', function(req, res){
     UserModel.updateTask(req, res, req.body.task);
 });
 

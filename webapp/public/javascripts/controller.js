@@ -23,29 +23,38 @@ myModule.controller('TaskListCtrl', ['$scope', '$http', '$state', '$stateParams'
     $scope.task[taskType].taskList = taskList.filter(function (task) {
       return task.status !== status;
     });
+    PostTask.saveTask('/saveTask', $scope.task)
+      .success(function(data){
+        console.log(data.message);
+      });
   };
 
   //改变任务状态，因为task参数是引用类型，所以会将引用类型的地址传递给参数。
   //所以修改局部变量可以影响到外部变量。
+
+  //timer用于防止连续点击
+  var timer;
   $scope.changeStatus = function(task){
-    var timer = null;
     task.status = task.status ? 0 : 1;
 
     if(timer){
-      timer.cancel();
-    }else{
-      timer = $timeout(function(){
-        PostTask.saveTask('/changeStatus', $scope.task)
-          .success(function(data){
-            console.log(data.message);
-          });
-      }, 500)
+      $timeout.cancel(timer);
     }
+    timer = $timeout(function(){
+      PostTask.saveTask('/saveTask', $scope.task)
+        .success(function(data){
+          console.log(data.message);
+        });
+    }, 500);
   };
-  $scope.showAddTask = true;
-  $scope.createTask = function(){
+
+
+  $scope.addTask = function(){
     $scope.showAddTask = true;
-  }
+  };
+  $scope.quitAdd = function(){
+    $scope.showAddTask = false;
+  };
 
 }]);
 
