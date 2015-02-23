@@ -1,8 +1,8 @@
 <li class="list-group-item">
   <form class="row" name="addTaskForm" novalidate ng-submit="saveTask()">
     <div class="col-md-2">
-      <div class="pop-error alert-danger" ng-show="addTaskForm.limitTime.$error">
-        <span ng-show="addTaskForm.limitTime.$error.validTime">怎么能设置在过去，别闹！</span>
+      <div class="pop-error alert-danger" ng-show="addTaskForm.limitTime.$error.validTime || addTaskForm.limitTime.$error.pattern ">
+        <span ng-show="addTaskForm.limitTime.$error.validTime">时间必须大于今天</span>
         <span ng-show="addTaskForm.limitTime.$error.pattern">时间格式不对</span>
       </div>
       <input ng-model="newTask.limitTime" placeholder="年-月-日" required type="text" ng-pattern="/^\d{4}\-([1-9]|[0][1-9]|[1][0-2])\-([1-9]|[0][1-9]|[1-2][0-9]|[3][0-1])$/" class="form-control" name="limitTime"/>
