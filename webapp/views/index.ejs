@@ -4,6 +4,12 @@
     <title><%= title %></title>
     <link rel='stylesheet' href='./stylesheets/style.css' />
     <link rel="stylesheet" href="./bootstrap/dist/css/bootstrap.min.css"/>
+  </head>
+  <body>
+    <% if(!locals.isLogin){ %>
+      <login-form></login-form>
+    <% } %>
+    <ui-view></ui-view>
     <script src="./angular/angular.min.js"></script>
     <script src="./jquery/dist/jquery.min.js"></script>
     <script src="./angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
@@ -12,11 +18,5 @@
     <script src="./javascripts/controller.js"></script>
     <script src="./javascripts/directive.js"></script>
     <script src="./javascripts/postTaskService.js"></script>
-  </head>
-  <body>
-    <% if(!locals.isLogin){ %>
-      <login-form></login-form>
-    <% } %>
-    <ui-view></ui-view>
   </body>
 </html>

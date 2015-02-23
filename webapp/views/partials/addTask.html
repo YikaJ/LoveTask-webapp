@@ -1,12 +1,19 @@
 <li class="list-group-item">
   <form class="row" name="addTaskForm" novalidate ng-submit="saveTask()">
     <div class="col-md-2">
-      <input required type="text" class="form-control" name="limitTime" ng-model="newTask.limitTime"/>
+      <div class="pop-error alert-danger" ng-show="addTaskForm.limitTime.$error.validTime">
+        初始时间有误！
+      </div>
+      <input ng-model="newTask.limitTime" placeholder="年-月-日" required type="text" ng-pattern="/^\d+\-\d+\-\d+$/" class="form-control" name="limitTime"/>
     </div>
-    <div class="col-md-4 text-center"><input ng-model="newTask.content" required name="content" class="form-control" type="text"/></div>
-    <div class="col-md-4 text-center"><input ng-model="newTask.punishment" required name="punishment" class="form-control" type="text"/></div>
+    <div class="col-md-4 text-center">
+      <input ng-model="newTask.content" placeholder="任务内容" required name="content" class="form-control" type="text"/>
+    </div>
+    <div class="col-md-4 text-center">
+      <input ng-model="newTask.punishment" placeholder="你要如何惩罚" required name="punishment" class="form-control" type="text"/>
+    </div>
     <div class="col-md-2 saveTask">
-      <button type="submit" class="btn-primary">保存</button>
+      <button type="submit" class="btn btn-primary" ng-disabled="addTaskForm.$invalid">保存</button>
       <button ng-click="quitAdd()" class="btn-warning">取消</button>
     </div>
   </form>

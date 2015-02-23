@@ -25,11 +25,11 @@
             <div class="col-md-2">完成状态</div>
           </div>
         </li>
-        <li class="list-group-item" ng-show="!task[$stateParams.type].taskList.length">任务列表为空，快让<span class="text-danger">{{task[$stateParams.type].loverName}}</span>为你添加任务吧！</li>
+        <li class="list-group-item" ng-show="!task[$stateParams.type].taskList.length">任务列表为空， 好好偷个懒吧！</li>
         <li class="list-group-item" ng-repeat="task in task[$stateParams.type].taskList">
           <div class="row">
             <div class="col-md-2">
-              {{task.limitTime}}
+              {{task.limitTime | date: 'yyyy-MM-dd'}}
             </div>
             <div class="col-md-4 text-center">{{task.content}}</div>
             <div class="col-md-4 text-center">{{task.punishment}}</div>
@@ -87,5 +87,5 @@
 </div>
 <hr/>
 <footer class="container-fluid">
-  ©Yika、J&emsp;nono....
+  ©Yika、J&emsp;Blue-youmei
 </footer>

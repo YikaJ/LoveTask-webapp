@@ -89,34 +89,47 @@ ul.list-group{
   border-right: 1px solid #EFEFEF;
 }
 
-input.ng-invalid {
-
-  border: 1px solid red;
-
+input.ng-invalid.ng-dirty {
+  border: 1px solid pink  ;
 }
 
 .saveTask{
-  margin-left: -8px;
+  margin-top: 6px;
 }
 
 .saveTask button{
   border: 0;
+  padding: 3px;
   float: left;
-  padding: 5px;
   color: #EEE;
 }
 
-.saveTask a:hover{
-  text-decoration: none;
-  color: #EEE;
-}
-
-.saveTask a:first-of-type {
+.saveTask button:first-of-type {
   border-radius: 2px 0 0 2px;
 }
 
-.saveTask a:last-of-type{
+.saveTask button:last-of-type{
   border-radius: 0 2px 2px 0;
+}
+
+.pop-error{
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 3px;
+  position: absolute;
+  bottom: 0;
+  margin-bottom: -60px;
+  z-index: 100;
+}
+.pop-error:before{
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border: 10px solid #000;
+  border-color: transparent transparent #F2DEDE transparent;
+  margin-top: -25px;
+  z-index: 111;
 }
 footer{
   text-align: center;
